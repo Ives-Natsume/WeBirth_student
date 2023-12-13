@@ -27,9 +27,9 @@ LassoFloraSelectOne <- function(dataset, xcol_1, xcol_2, xcol_target) {
                                    local_dataset_y_lasso,
                                    alpha = 1, nfolds = 3)
 
-  # draw some useless plots
-  plot(local_lasso_testout)
-  plot(local_lasso_testout$glmnet.fit, "lambda", label = TRUE)
+  # draw plots(with no meaning)
+  #plot(local_lasso_testout)
+  #plot(local_lasso_testout$glmnet.fit, "lambda", label = TRUE)
 
   # find the best model
   local_lasso_testout_min <- local_lasso_testout$lambda.min
@@ -48,7 +48,7 @@ LassoFloraSelectOne <- function(dataset, xcol_1, xcol_2, xcol_target) {
 # loop selection
 exposed_local_flag_lasso <- 1
 repeat {
-  print(LassoFloraSelectOne(global_base,
+  print(LassoFloraSelectOne(global_base_flora,
                             exposed_local_flag_lasso,
                             exposed_local_flag_lasso + 9,
                             xcol_target = 2))
@@ -60,4 +60,7 @@ repeat {
 }
 
 # temp
-temp_function_test <- LassoFloraSelectOne(global_base, 25, 30, 2)
+temp_function_test <- LassoFloraSelectOne(global_base_flora, 25, 30, 2)
+
+# need to learn dgCMatrix
+#print(temp_function_test$s0)
